@@ -1008,6 +1008,8 @@ html[data-theme="light"] .chip--on { color: #fff7ef; }
   display: flex;
   align-items: flex-start;
   gap: 12px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .dl-note-badge {
   background: rgba(245, 158, 11, 0.2);
@@ -1026,6 +1028,22 @@ html[data-theme="light"] .chip--on { color: #fff7ef; }
   font-size: 13.5px;
   line-height: 1.55;
   color: var(--ink);
+}
+.dl-simple-note code {
+  background: rgba(0, 0, 0, 0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  word-break: break-all;
+}
+html[data-theme="dark"] .dl-simple-note code {
+  background: rgba(255, 255, 255, 0.1);
+}
+@media (max-width: 600px) {
+  .dl-simple-note {
+    flex-direction: column;
+    gap: 8px;
+  }
 }
 .dl-simple-links {
   font-size: 13.5px;
