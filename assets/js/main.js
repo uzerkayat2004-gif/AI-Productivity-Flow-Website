@@ -333,6 +333,20 @@
     tabAudio.addEventListener('click', function () { setTab('audio'); });
     if (capVideo) capVideo.addEventListener('click', function () { setTab('video'); });
     if (capAudio) capAudio.addEventListener('click', function () { setTab('audio'); });
+
+    // Explicitly trigger active hero video to guarantee immediate playback
+    if (vidVideo) {
+      var startHeroVideo = function () {
+        if (vidVideo.paused) {
+          vidVideo.play().catch(function () {});
+        }
+      };
+      startHeroVideo();
+      // Ensure it starts if autoplay was throttled before user interaction
+      ['click', 'touchstart', 'scroll', 'mousemove'].forEach(function (evt) {
+        window.addEventListener(evt, startHeroVideo, { once: true, passive: true });
+      });
+    }
   }
 
   /* ---------------------------------------------------------------
