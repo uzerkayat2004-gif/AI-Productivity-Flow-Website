@@ -1,0 +1,1671 @@
+/* =========================================================================
+   Page 4: Interactive Desktop Demo Styles (Windows 11 + Edge + Twitter + Flow)
+   Scroll-Driven Interactive Zoom Experience (Parallels Hero Showcase Zoom)
+   ========================================================================= */
+
+.section--desktop-demo.demo-track {
+  position: relative;
+  height: 270vh;
+  margin: 0;
+  padding: 0 !important;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  overflow: visible;
+}
+
+.demo__sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 20;
+  box-sizing: border-box;
+}
+
+.demo__ambient-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    radial-gradient(860px 480px at 50% 10%, rgba(239, 164, 100, 0.18), transparent 70%),
+    radial-gradient(620px 380px at 50% 5%, rgba(201, 106, 42, 0.16), transparent 75%);
+}
+
+.demo__header {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding-top: calc(var(--nav-h, 64px) + 2px);
+  margin-bottom: 6px;
+  will-change: opacity, transform;
+  transition: opacity .15s ease-out;
+  flex-shrink: 0;
+}
+.demo__header .eyebrow {
+  margin-bottom: 4px;
+  font-size: 11px;
+}
+.demo__header .s-title {
+  font-size: clamp(20px, 2.4vw, 30px);
+  margin-bottom: 4px;
+  line-height: 1.15;
+}
+.demo__header .s-sub {
+  font-size: 13px;
+  line-height: 1.4;
+  max-width: 56ch;
+  margin: 0 auto 8px;
+}
+
+/* Quick Action Bar */
+.demo-quick-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 4px auto 6px;
+  max-width: 800px;
+}
+
+.demo-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.demo-chip-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: #efa464;
+}
+
+.demo-chip-btn.is-active {
+  background: linear-gradient(135deg, #efa464, #e06222);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 18px rgba(201, 106, 42, 0.38);
+}
+
+.demo-chip-btn--reset {
+  background: transparent;
+  border: 1px dashed var(--line);
+  color: var(--muted);
+}
+.demo-chip-btn--reset:hover {
+  background: var(--well);
+  color: var(--ink);
+}
+
+/* Desktop Showcase Stage */
+.demo-showcase-stage {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+  z-index: 10;
+  overflow: visible;
+}
+
+/* Computer Monitor Desktop Frame (Fixed 1200x675 16:9 native canvas, scaled by GPU transform) */
+.interactive-desktop-frame {
+  position: relative;
+  width: 1200px;
+  height: 675px;
+  flex-shrink: 0 !important;
+  transform: translate3d(0, var(--df-y, 0px), 0) scale(var(--df-scale, 0.60));
+  transform-origin: center top;
+  border-radius: 16px;
+  padding: 7px 7px 10px 7px;
+  background: linear-gradient(180deg, #2b2a27 0%, #151412 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.08) inset, 0 22px 60px rgba(0, 0, 0, 0.55), 0 0 45px rgba(224, 112, 32, 0.16);
+  will-change: transform;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin: 0 auto;
+  z-index: 10;
+  transition: border-color .28s ease, box-shadow .28s ease;
+}
+
+.desktop-screen-camera {
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #080808;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  z-index: 12;
+  pointer-events: none;
+}
+
+.desktop-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0d1117;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+/* Wallpaper: Mica Bloom */
+.desktop-wallpaper {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 60%, rgba(201, 106, 42, 0.22), transparent 50%),
+              radial-gradient(circle at 20% 20%, rgba(29, 155, 240, 0.18), transparent 45%),
+              linear-gradient(135deg, #0b0f19, #05070c);
+  z-index: 1;
+}
+
+/* Edge Browser Window */
+.edge-browser-window {
+  position: relative;
+  z-index: 5;
+  width: calc(100% - 24px);
+  height: calc(100% - 50px);
+  margin: 4px auto 0;
+  border-radius: 8px;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Edge Titlebar */
+.edge-titlebar {
+  height: 38px;
+  background: #18191c;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.edge-tabs {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.edge-tab {
+  height: 32px;
+  background: #000000;
+  color: #fff;
+  border-radius: 8px 8px 0 0;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 500;
+  max-width: 280px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: none;
+}
+
+.edge-tab-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.edge-tab-close {
+  opacity: 0.6;
+  cursor: pointer;
+}
+.edge-tab-close:hover { opacity: 1; }
+
+.edge-new-tab {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 16px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.edge-win-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-right: 6px;
+  height: 100%;
+  color: #aaa;
+  font-size: 13px;
+}
+.win-btn { cursor: pointer; }
+.win-btn--close:hover { color: #f87171; }
+
+/* Edge Toolbar */
+.edge-toolbar {
+  height: 40px;
+  background: #111215;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.edge-nav-buttons {
+  display: flex;
+  gap: 6px;
+}
+.t-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+.t-btn:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+
+.edge-address-bar {
+  flex: 1;
+  height: 28px;
+  background: #1c1d22;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  font-size: 12px;
+  color: #ccc;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.addr-url {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #e5e5e5;
+}
+.edge-ext-icons {
+  display: flex;
+  gap: 10px;
+  color: #888;
+  font-size: 13px;
+}
+
+/* Twitter Layout */
+.twitter-container {
+  flex: 1;
+  display: flex;
+  background: #000000;
+  color: #e7e9ea;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Left Nav */
+.x-nav-col {
+  width: 210px;
+  padding: 10px 12px;
+  border-right: 1px solid #2f3336;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.x-logo {
+  padding: 4px 10px;
+  color: #fff;
+}
+
+.x-nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.x-menu-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #e7e9ea;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.x-menu-link:hover, .x-menu-link.active {
+  background: rgba(239, 243, 244, 0.1);
+  font-weight: 700;
+}
+.x-ico { font-size: 17px; }
+
+.x-post-btn {
+  margin-top: 6px;
+  background: #1d9bf0;
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 8px;
+  border-radius: 999px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.x-user-mini {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 4px;
+  border-radius: 999px;
+}
+.x-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #1d9bf0;
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.x-avatar--lg { width: 42px; height: 42px; font-size: 15px; }
+.x-avatar--sm { width: 26px; height: 26px; font-size: 11px; }
+
+.x-user-details { line-height: 1.2; font-size: 12.5px; overflow: hidden; }
+.x-name { font-weight: 700; display: flex; align-items: center; gap: 4px; color: #fff; white-space: nowrap; }
+.x-badge { color: #1d9bf0; font-size: 11px; }
+.x-handle { color: #71767b; font-size: 11.5px; }
+
+/* Center Article Feed (Standard scrollbar, freely scrollable) */
+.x-article-col {
+  flex: 1;
+  max-width: 630px;
+  border-right: 1px solid #2f3336;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  padding-bottom: 28px;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+}
+
+.x-article-col::-webkit-scrollbar {
+  width: 6px;
+}
+.x-article-col::-webkit-scrollbar-track {
+  background: transparent;
+}
+.x-article-col::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+}
+.x-article-col::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.x-article-header {
+  height: 44px;
+  padding: 0 16px;
+  border-bottom: 1px solid #2f3336;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 16px;
+  font-weight: 700;
+  position: sticky;
+  top: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+  flex-shrink: 0;
+}
+.x-back-btn { cursor: pointer; }
+.x-expand-ico { margin-left: auto; color: #71767b; font-size: 14px; }
+
+.x-article-body {
+  padding: 14px 18px;
+  overflow: visible !important;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
+.x-post-text,
+.article-p,
+.x-post-headline {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
+.x-author-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.x-author-meta { flex: 1; }
+.x-author-name {
+  font-size: 14.5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+}
+.x-verified-badge { flex-shrink: 0; }
+.x-badge-label {
+  font-size: 10.5px;
+  background: #2f3336;
+  color: #71767b;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+.x-author-sub { color: #71767b; font-size: 12px; }
+
+.x-author-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.x-btn-boost {
+  background: transparent;
+  color: #1d9bf0;
+  border: 1px solid rgba(29, 155, 240, 0.4);
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.x-btn-boost:hover { background: rgba(29, 155, 240, 0.1); }
+.x-more-btn { color: #71767b; cursor: pointer; font-size: 16px; }
+
+.x-post-headline {
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.3;
+  margin: 0 0 10px 0;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.x-post-text {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #d1d5db;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  user-select: text;
+}
+.article-p {
+  margin: 0;
+  padding: 3px 6px;
+  border-radius: 4px;
+  transition: all 0.25s ease;
+  cursor: text;
+}
+.article-p::selection {
+  background: rgba(239, 164, 100, 0.4);
+  color: #fff;
+}
+
+.article-p.is-selected-video {
+  background: rgba(29, 155, 240, 0.28);
+  border-left: 3px solid #1d9bf0;
+  padding-left: 8px;
+  color: #fff;
+}
+.article-p.is-selected-audio {
+  background: rgba(239, 164, 100, 0.28);
+  border-left: 3px solid #efa464;
+  padding-left: 8px;
+  color: #fff;
+}
+
+.x-post-meta {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #2f3336;
+  font-size: 12px;
+  color: #71767b;
+}
+
+.x-post-engagements {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding: 6px 0;
+  border-top: 1px solid #2f3336;
+  border-bottom: 1px solid #2f3336;
+  color: #71767b;
+  font-size: 12px;
+}
+.eng-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Reply Box */
+.x-reply-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 6px 10px;
+  background: #16181c;
+  border-radius: 12px;
+  border: 1px solid #2f3336;
+}
+.x-reply-input-wrap {
+  flex: 1;
+  font-size: 12.5px;
+  color: #71767b;
+}
+.x-reply-placeholder.is-streaming {
+  color: #fff;
+  font-weight: 500;
+}
+.x-reply-submit {
+  background: #1d9bf0;
+  color: #fff;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* Right Sidebar */
+.x-sidebar-col {
+  width: 250px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.x-search-box {
+  height: 34px;
+  background: #202327;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+}
+.x-search-ico { color: #71767b; font-size: 12px; }
+.x-search-box input {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 12px;
+  outline: none;
+  width: 100%;
+}
+
+.x-side-card {
+  background: #16181c;
+  border-radius: 12px;
+  padding: 12px;
+}
+.x-side-title {
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: #fff;
+}
+.x-person-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.x-person-info { flex: 1; line-height: 1.2; font-size: 12px; overflow: hidden; }
+.x-person-name { font-weight: 700; color: #fff; white-space: nowrap; }
+.x-person-handle { color: #71767b; font-size: 11px; }
+.x-follow-btn {
+  background: #fff;
+  color: #000;
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.x-trend-item { margin-bottom: 8px; }
+.x-trend-sub { color: #71767b; font-size: 10.5px; }
+.x-trend-topic { font-size: 13px; font-weight: 700; color: #fff; margin: 1px 0; }
+.x-trend-stats { color: #71767b; font-size: 10.5px; }
+
+/* ==================== ON-SCREEN NATIVE FLOW APP WIDGETS ==================== */
+
+/* 1. Selection HUD (Appears right next to selected text) */
+.flow-selection-hud {
+  position: absolute;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(22, 23, 20, 0.94);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 5px 8px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(239, 164, 100, 0.25);
+  animation: hudPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+@keyframes hudPopIn {
+  0% { opacity: 0; transform: scale(0.85) translateY(4px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.flow-hud-badge {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  background: rgba(239, 164, 100, 0.15);
+  border-radius: 8px;
+}
+.flow-hud-badge img {
+  width: 16px !important;
+  height: 16px !important;
+  display: block !important;
+}
+
+.flow-hud-menu {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.flow-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #e5e5e5;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.flow-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+.flow-menu-btn#menuBtnVideo:hover {
+  background: linear-gradient(135deg, #1d9bf0, #0078d4);
+  color: #fff;
+}
+.flow-menu-btn#menuBtnAudio:hover {
+  background: linear-gradient(135deg, #efa464, #e06222);
+  color: #fff;
+}
+
+/* 2. Audio Flow Dialog */
+.flow-audio-dialog {
+  position: absolute;
+  z-index: 102;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  background: rgba(24, 25, 28, 0.96);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  animation: hudPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flow-dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.flow-dialog-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #fff;
+}
+.flow-dialog-close {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 18px;
+  cursor: pointer;
+}
+.flow-dialog-close:hover { color: #fff; }
+
+.flow-dialog-notice {
+  font-size: 11.5px;
+  color: #efa464;
+  background: rgba(239, 164, 100, 0.12);
+  border: 1px solid rgba(239, 164, 100, 0.25);
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.flow-depth-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.flow-depth-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 4px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  color: #ccc;
+  transition: all 0.2s;
+}
+.flow-depth-btn.active {
+  background: rgba(239, 164, 100, 0.2);
+  border-color: #efa464;
+  color: #fff;
+}
+.depth-name { font-size: 11.5px; font-weight: 700; }
+.depth-time { font-size: 9.5px; color: #888; }
+.flow-depth-btn.active .depth-time { color: #efa464; }
+
+.flow-btn-generate {
+  width: 100%;
+  padding: 9px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #efa464, #e06222);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(201, 106, 42, 0.4);
+}
+
+/* 3. Floating Bottom Pill HUD (Cleanly resting right above Windows taskbar!) */
+.flow-floating-pill-hud {
+  position: absolute;
+  bottom: 52px; /* 8px above the 44px taskbar */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  height: 36px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  padding: 0 9px;
+  max-width: 38px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22), 0 0 12px rgba(239, 164, 100, 0.2);
+  transition: max-width 0.32s cubic-bezier(0.16, 1, 0.3, 1), padding 0.32s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.3s, border-color 0.3s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.flow-floating-pill-hud .flow-pill-logo {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.flow-floating-pill-hud .flow-pill-actions {
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(8px);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+/* Hover or expanded (via selection/action) smoothly reveals the full floating bar */
+.flow-floating-pill-hud:hover,
+.flow-floating-pill-hud.is-expanded,
+.flow-floating-pill-hud.is-active-generating,
+.flow-floating-pill-hud.is-ready {
+  max-width: 380px;
+  padding: 0 6px 0 10px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3), 0 0 20px rgba(239, 164, 100, 0.35);
+}
+
+.flow-floating-pill-hud:hover .flow-pill-actions,
+.flow-floating-pill-hud.is-expanded .flow-pill-actions,
+.flow-floating-pill-hud.is-active-generating .flow-pill-actions,
+.flow-floating-pill-hud.is-ready .flow-pill-actions {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.flow-floating-pill-hud.is-active-generating {
+  background: rgba(20, 28, 38, 0.96);
+  border-color: #1d9bf0;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(29, 155, 240, 0.4);
+}
+
+.flow-floating-pill-hud.is-ready {
+  background: rgba(25, 34, 22, 0.96);
+  border-color: #4ade80;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(74, 222, 128, 0.4);
+}
+
+.flow-pill-btn {
+  background: none;
+  border: none;
+  color: #e5e5e5;
+  font-size: 11.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: all 0.18s;
+}
+.flow-pill-btn:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+.flow-pill-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 0 2px;
+}
+
+/* 4. Real Floating Video Flow Window */
+.flow-window--video {
+  position: absolute;
+  z-index: 105;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  background: #141518;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(29, 155, 240, 0.25);
+  overflow: hidden;
+  animation: hudPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flow-window__titlebar {
+  height: 32px;
+  background: #1e2024;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.flow-window__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+}
+.flow-window__controls {
+  display: flex;
+  gap: 10px;
+  color: #888;
+  font-size: 13px;
+}
+.f-ctrl { cursor: pointer; }
+.f-ctrl--close:hover { color: #f87171; }
+
+.flow-window__subbar {
+  padding: 6px 10px;
+  background: #18191c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.badge-tag {
+  background: #1d9bf0;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 9.5px;
+}
+.topic-tag {
+  color: #aaa;
+  margin-left: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+}
+.btn-fullscreen-toggle {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.flow-window__player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.flow-demo-video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.flow-video-custom-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  z-index: 5;
+}
+.f-play-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+}
+.f-scrubber {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+}
+.f-scrubber-track {
+  height: 100%;
+  background: #1d9bf0;
+  border-radius: 999px;
+}
+.f-time {
+  font-size: 10.5px;
+  font-family: var(--mono);
+  color: #ccc;
+}
+
+.flow-window__footer {
+  height: 32px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #18191c;
+  font-size: 11px;
+}
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #4ade80;
+  font-weight: 600;
+}
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+}
+.status-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pct-badge {
+  background: rgba(74, 222, 128, 0.15);
+  color: #4ade80;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 10px;
+}
+.btn-download-mp4 {
+  color: #1d9bf0;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 11px;
+}
+
+/* 5. Real Floating Audio Flow Window */
+.flow-window--audio {
+  position: absolute;
+  z-index: 105;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  background: #151619;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(239, 164, 100, 0.25);
+  overflow: hidden;
+  animation: hudPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.audio-hud-icon { font-size: 13px; }
+.audio-player-body {
+  padding: 14px 16px;
+}
+.audio-player-meta {
+  margin-bottom: 12px;
+  text-align: center;
+}
+.audio-track-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.audio-track-sub {
+  font-size: 11px;
+  color: #efa464;
+  margin-bottom: 8px;
+}
+
+.audio-soundwaves {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 20px;
+  margin: 8px 0;
+}
+.wave-bar {
+  width: 3px;
+  height: 6px;
+  background: #efa464;
+  border-radius: 999px;
+  transition: height 0.2s;
+}
+.audio-soundwaves.is-playing .wave-bar:nth-child(2n) { animation: waveUp 0.6s infinite ease-in-out alternate; }
+.audio-soundwaves.is-playing .wave-bar:nth-child(2n+1) { animation: waveUp 0.8s infinite ease-in-out alternate-reverse; }
+
+@keyframes waveUp {
+  0% { height: 4px; }
+  100% { height: 18px; }
+}
+
+.audio-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.audio-step-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ccc;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.audio-main-play-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #efa464, #e06222);
+  color: #fff;
+  border: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(201, 106, 42, 0.45);
+}
+
+.audio-seeker-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-family: var(--mono);
+  color: #888;
+  margin-bottom: 10px;
+}
+.audio-seeker-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+}
+.audio-seeker-fill {
+  height: 100%;
+  background: #efa464;
+  border-radius: 999px;
+}
+
+.audio-speed-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 10.5px;
+  color: #888;
+}
+.speed-chips {
+  display: flex;
+  gap: 4px;
+}
+.speed-chip {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #bbb;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.speed-chip.active {
+  background: rgba(239, 164, 100, 0.25);
+  border-color: #efa464;
+  color: #fff;
+}
+
+/* Windows 11 Taskbar (Matches real Windows 11 layout) */
+.desktop-taskbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 44px;
+  background: rgba(18, 19, 22, 0.94);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  z-index: 40;
+}
+
+.taskbar-left {
+  display: flex;
+  align-items: center;
+}
+.taskbar-weather {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  color: #ccc;
+  cursor: pointer;
+}
+.taskbar-weather:hover { background: rgba(255, 255, 255, 0.06); }
+
+.taskbar-center {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tb-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.18s;
+}
+.tb-icon:hover { background: rgba(255, 255, 255, 0.08); }
+.tb-app--active { background: rgba(255, 255, 255, 0.06); }
+.active-dot {
+  position: absolute;
+  bottom: 2px;
+  width: 6px;
+  height: 2.5px;
+  background: #888;
+  border-radius: 999px;
+}
+.active-dot--flow {
+  background: #efa464;
+  width: 14px;
+  box-shadow: 0 0 6px #efa464;
+}
+
+.tb-search-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #888;
+  font-size: 11.5px;
+  cursor: pointer;
+  margin: 0 4px;
+}
+
+.taskbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.systray-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  color: #ccc;
+  font-size: 12px;
+  cursor: pointer;
+}
+.systray-group:hover { background: rgba(255, 255, 255, 0.06); }
+.tray-lang {
+  font-size: 9.5px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #aaa;
+  text-align: right;
+}
+.tray-clock {
+  font-size: 10.5px;
+  line-height: 1.2;
+  color: #ccc;
+  text-align: right;
+  font-family: var(--mono);
+}
+
+/* 6. Video Flow Create Video Modal */
+.flow-window--create-video {
+  position: absolute;
+  z-index: 104;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 440px;
+  max-height: calc(100% - 70px);
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15), 0 0 30px rgba(29, 155, 240, 0.15);
+  color: #111827;
+  overflow-y: auto;
+  animation: hudPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.video-create-body {
+  padding: 16px 20px;
+}
+
+.engine-tabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 16px;
+}
+.engine-tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 6px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.engine-tab.active {
+  background: #2a2b2f;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.vc-account-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(29, 155, 240, 0.1);
+  border: 1px solid rgba(29, 155, 240, 0.25);
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.vc-acc-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1d9bf0;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vc-acc-details {
+  font-size: 11px;
+  color: #fff;
+}
+
+.vc-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.flex-1 { flex: 1; }
+.vc-form-row {
+  display: flex;
+  gap: 12px;
+}
+.vc-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #aaa;
+}
+.vc-textarea, .vc-select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  color: #e5e5e5;
+  font-family: inherit;
+  font-size: 12px;
+  padding: 8px 10px;
+  outline: none;
+  box-sizing: border-box;
+}
+.vc-textarea {
+  resize: none;
+  height: 80px;
+  line-height: 1.4;
+}
+.vc-textarea:focus, .vc-select:focus {
+  border-color: rgba(29, 155, 240, 0.5);
+}
+
+
+/* ==================== 3. FLOATING BOTTOM PILL HUD ==================== */
+.flow-floating-pill-hud {
+  position: absolute;
+  bottom: 52px; /* 8px above the 44px taskbar */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  height: 36px;
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 999px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  width: 36px !important;
+  max-width: 36px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12), 0 0 8px rgba(0, 0, 0, 0.04) !important;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease, box-shadow 0.3s ease, background 0.25s, border-color 0.25s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.flow-floating-pill-hud .flow-pill-logo {
+  width: 16px !important;
+  height: 16px !important;
+  flex-shrink: 0 !important;
+  display: block !important;
+  margin: 0 !important;
+}
+
+.flow-floating-pill-hud .flow-pill-actions {
+  display: flex !important;
+  align-items: center !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.2s ease;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+/* Hover or Active State expands the pill smoothly */
+/* Hover or Active State expands the pill smoothly */
+.flow-floating-pill-hud:hover,
+.flow-floating-pill-hud.is-expanded,
+.flow-floating-pill-hud.has-audio-player,
+.flow-floating-pill-hud:has(.audio-pill-temp) {
+  width: auto !important;
+  max-width: 500px !important;
+  padding: 0 8px 0 10px !important;
+  justify-content: flex-start !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2), 0 0 14px rgba(239, 164, 100, 0.2) !important;
+}
+
+.flow-floating-pill-hud:hover .flow-pill-actions,
+.flow-floating-pill-hud.is-expanded .flow-pill-actions {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.flow-floating-pill-hud:hover .flow-pill-logo,
+.flow-floating-pill-hud.is-expanded .flow-pill-logo {
+  margin-right: 4px !important;
+}
+
+/* When audio player is active, completely hide default logo and actions */
+.flow-floating-pill-hud.has-audio-player .flow-pill-actions,
+.flow-floating-pill-hud:has(.audio-pill-temp) .flow-pill-actions,
+.flow-floating-pill-hud.has-audio-player .flow-pill-logo,
+.flow-floating-pill-hud:has(.audio-pill-temp) .flow-pill-logo {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.audio-pill-temp {
+  display: flex !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+}
+
+.flow-floating-pill-hud.is-active-generating {
+  border-color: #1d9bf0 !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 0 16px rgba(29, 155, 240, 0.35) !important;
+}
+
+.flow-floating-pill-hud.is-ready {
+  border-color: #22c55e !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 0 16px rgba(34, 197, 94, 0.35) !important;
+}
+
+.flow-pill-btn {
+  background: none !important;
+  border: none !important;
+  color: #374151 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  padding: 4px 8px !important;
+  cursor: pointer !important;
+  border-radius: 999px !important;
+  transition: all 0.18s !important;
+  flex-shrink: 0 !important;
+}
+.flow-pill-btn:hover { background: rgba(0, 0, 0, 0.06) !important; color: #111827 !important; }
+.flow-pill-divider {
+  width: 1px !important;
+  height: 18px !important;
+  background: #e5e7eb !important;
+  margin: 0 2px !important;
+  flex-shrink: 0 !important;
+}
+
+/* ==================== 1. FLOATING 30x30 SUNSET AUDIO TRIGGER & ACTION PILL ==================== */
+.flow-selection-hud {
+  position: absolute !important;
+  z-index: 100 !important;
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  max-width: 30px !important;
+  border-radius: 999px !important;
+  padding: 0 !important;
+  background: linear-gradient(135deg, #efa464, #e06222) !important; /* 30x30 circular sunset audio flow trigger */
+  box-shadow: 0 4px 14px rgba(224, 98, 34, 0.45) !important;
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  overflow: hidden !important;
+  border: none !important;
+  transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.28s cubic-bezier(0.16, 1, 0.3, 1), padding 0.2s ease, border-radius 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+.flow-selection-hud.is-visible {
+  display: flex !important;
+}
+
+.flow-selection-hud .flow-hud-badge {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 30px !important;
+  height: 30px !important;
+  flex-shrink: 0 !important;
+  background: none !important;
+  padding: 0 !important;
+}
+.flow-selection-hud .flow-hud-badge img {
+  width: 15px !important;
+  height: 15px !important;
+  display: block !important;
+}
+
+.flow-selection-hud .flow-hud-menu {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  align-items: center !important;
+  gap: 3px !important;
+  padding-right: 6px !important;
+  transition: opacity 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+/* Hover or Click to Expand into Audio Flow Action Pill */
+.flow-selection-hud:hover,
+.flow-selection-hud.is-expanded {
+  width: auto !important;
+  max-width: 340px !important;
+  height: 32px !important;
+  border-radius: 999px !important;
+  padding: 0 6px 0 2px !important;
+  background: rgba(22, 23, 26, 0.96) !important;
+  backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(239, 164, 100, 0.25) !important;
+  justify-content: flex-start !important;
+}
+
+.flow-selection-hud:hover .flow-hud-badge,
+.flow-selection-hud.is-expanded .flow-hud-badge {
+  width: 26px !important;
+  height: 26px !important;
+  background: rgba(239, 164, 100, 0.15) !important;
+  border-radius: 50% !important;
+  margin-right: 4px !important;
+}
+
+.flow-selection-hud:hover .flow-hud-menu,
+.flow-selection-hud.is-expanded .flow-hud-menu {
+  display: flex !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}

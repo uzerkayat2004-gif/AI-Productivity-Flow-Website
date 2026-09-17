@@ -1,0 +1,7 @@
+.vercel
+*.png
+*.log
+verify_all.py
+screenshot.js
+node_modules
+.DS_Store

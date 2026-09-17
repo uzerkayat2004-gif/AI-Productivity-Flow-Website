@@ -1,0 +1,63 @@
+{
+  "name": "AI Productivity Flow",
+  "short_name": "Flow",
+  "description": "Zero-friction voice, audio, and video intelligence for your desktop. Native-feel desktop progressive web app.",
+  "id": "/",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#161512",
+  "theme_color": "#efa464",
+  "categories": ["productivity", "utilities", "multimedia"],
+  "icons": [
+    {
+      "src": "assets/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/img/icon-256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/img/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Live Demo",
+      "short_name": "Demo",
+      "description": "Experience the interactive desktop Flow demo",
+      "url": "./#demo",
+      "icons": [{ "src": "assets/img/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Direct Download",
+      "short_name": "Download",
+      "description": "Download installers or install Progressive Desktop App",
+      "url": "./#download",
+      "icons": [{ "src": "assets/img/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Providers & Privacy",
+      "short_name": "Providers",
+      "description": "View supported local and cloud AI providers",
+      "url": "./#providers",
+      "icons": [{ "src": "assets/img/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
