@@ -860,6 +860,10 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13m0 0 4.5-4.5M12 16l-4.5-4.5"/><path d="M4 20h16"/></svg>
           Download the Flow
         </a>
+        <a class="btn btn--hero-promo" id="heroWatchPromoBtn" href="#heroShowcase" style="display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;background:rgba(255,255,255,0.85);border:1px solid rgba(234,164,115,0.4);color:#181916;font-weight:600;text-decoration:none;font-size:15px;box-shadow:0 4px 14px rgba(180,120,60,0.08);backdrop-filter:blur(8px);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#ea6518"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Watch Launch Video (1080p)
+        </a>
       </div>
     </div>
 
@@ -883,6 +887,10 @@
               <span class="tab-badge-icon">🎧</span>
               <span>Audio Flow</span>
             </button>
+            <button class="win-tab" id="tabPromo" type="button" role="tab" aria-selected="false">
+              <span class="tab-badge-icon">✨</span>
+              <span>Official Release Video</span>
+            </button>
           </div>
         </div>
 
@@ -900,6 +908,15 @@
           <div class="panel-screen">
             <video class="hero-showcase-video" loop muted playsinline preload="none" poster="assets/img/hero_audioflow_poster.jpg">
               <source src="assets/video/audioflow_demo.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- Panel 3: Official Release Promo Showcase -->
+        <div class="showcase-panel" id="panelPromo">
+          <div class="panel-screen">
+            <video class="hero-showcase-video" controls loop playsinline preload="none" poster="assets/img/promo_video_poster.jpg">
+              <source src="assets/video/ai_productivity_flow_release_promo.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -1443,10 +1460,13 @@
                   <span class="status-dot"></span>
                   <span>Ready</span>
                 </div>
-                <div class="status-right">
+                <div class="status-right" style="display:flex;gap:8px;align-items:center;">
                   <span class="pct-badge">100%</span>
                   <a class="btn-download-mp4" href="assets/video/videoflow_demo.mp4" download="AI_Productivity_Flow_Explainer.mp4">
-                    <span>&darr; Download MP4</span>
+                    <span>&darr; Explainer MP4</span>
+                  </a>
+                  <a class="btn-download-mp4" href="assets/video/ai_productivity_flow_release_promo.mp4" download="AI_Productivity_Flow_Release_Promo.mp4" title="Official Release Promo Video (1080p Full HD)">
+                    <span>&darr; Promo (1080p)</span>
                   </a>
                 </div>
               </div>

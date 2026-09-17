@@ -299,40 +299,73 @@
      --------------------------------------------------------------- */
   var tabVideo = document.getElementById('tabVideo');
   var tabAudio = document.getElementById('tabAudio');
+  var tabPromo = document.getElementById('tabPromo');
   var panelVideo = document.getElementById('panelVideo');
   var panelAudio = document.getElementById('panelAudio');
+  var panelPromo = document.getElementById('panelPromo');
   var capVideo = document.getElementById('capVideo');
   var capAudio = document.getElementById('capAudio');
 
   if (tabVideo && tabAudio && panelVideo && panelAudio) {
     var vidVideo = panelVideo.querySelector('video');
     var vidAudio = panelAudio.querySelector('video');
+    var vidPromo = panelPromo ? panelPromo.querySelector('video') : null;
 
     function setTab(tab) {
       var isVideo = tab === 'video';
+      var isAudio = tab === 'audio';
+      var isPromo = tab === 'promo';
+
       tabVideo.classList.toggle('is-active', isVideo);
-      tabAudio.classList.toggle('is-active', !isVideo);
+      tabAudio.classList.toggle('is-active', isAudio);
+      if (tabPromo) tabPromo.classList.toggle('is-active', isPromo);
+
       tabVideo.setAttribute('aria-selected', isVideo ? 'true' : 'false');
-      tabAudio.setAttribute('aria-selected', !isVideo ? 'true' : 'false');
+      tabAudio.setAttribute('aria-selected', isAudio ? 'true' : 'false');
+      if (tabPromo) tabPromo.setAttribute('aria-selected', isPromo ? 'true' : 'false');
+
       panelVideo.classList.toggle('is-active', isVideo);
-      panelAudio.classList.toggle('is-active', !isVideo);
+      panelAudio.classList.toggle('is-active', isAudio);
+      if (panelPromo) panelPromo.classList.toggle('is-active', isPromo);
 
       if (capVideo) capVideo.classList.toggle('is-active', isVideo);
-      if (capAudio) capAudio.classList.toggle('is-active', !isVideo);
+      if (capAudio) capAudio.classList.toggle('is-active', isAudio);
 
       if (isVideo) {
         if (vidVideo) { vidVideo.play().catch(function () {}); }
         if (vidAudio) { vidAudio.pause(); }
-      } else {
+        if (vidPromo) { vidPromo.pause(); }
+      } else if (isAudio) {
         if (vidAudio) { vidAudio.play().catch(function () {}); }
         if (vidVideo) { vidVideo.pause(); }
+        if (vidPromo) { vidPromo.pause(); }
+      } else if (isPromo) {
+        if (vidPromo) { vidPromo.play().catch(function () {}); }
+        if (vidVideo) { vidVideo.pause(); }
+        if (vidAudio) { vidAudio.pause(); }
       }
     }
 
     tabVideo.addEventListener('click', function () { setTab('video'); });
     tabAudio.addEventListener('click', function () { setTab('audio'); });
+    if (tabPromo) tabPromo.addEventListener('click', function () { setTab('promo'); });
     if (capVideo) capVideo.addEventListener('click', function () { setTab('video'); });
     if (capAudio) capAudio.addEventListener('click', function () { setTab('audio'); });
+
+    var heroWatchPromoBtn = document.getElementById('heroWatchPromoBtn') || document.querySelector('.btn--hero-promo');
+    if (heroWatchPromoBtn) {
+      heroWatchPromoBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        setTab('promo');
+        var showcase = document.getElementById('heroShowcase') || document.getElementById('showcaseWindow');
+        if (showcase) {
+          showcase.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        if (vidPromo) {
+          vidPromo.play().catch(function () {});
+        }
+      });
+    }
 
     // Explicitly trigger active hero video to guarantee immediate playback
     if (vidVideo) {
