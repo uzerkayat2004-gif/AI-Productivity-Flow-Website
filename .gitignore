@@ -1,7 +1,13 @@
 .vercel
-*.png
 *.log
 verify_all.py
 screenshot.js
 node_modules
 .DS_Store
+
+# Temporary test screenshots
+test_*.png
+verification_*.png
+live_*.png
+audit_*.png
+verify_*.png
